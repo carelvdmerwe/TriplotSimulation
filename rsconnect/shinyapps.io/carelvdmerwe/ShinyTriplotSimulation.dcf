@@ -1,0 +1,12 @@
+name: ShinyTriplotSimulation
+title: ShinyTriplotSimulation
+username:
+account: carelvdmerwe
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1003254
+bundleId: 2244472
+url: https://carelvdmerwe.shinyapps.io/ShinyTriplotSimulation/
+when: 1563461564.56839
+asMultiple: FALSE
+asStatic: FALSE
