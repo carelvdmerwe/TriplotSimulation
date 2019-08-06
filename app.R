@@ -56,7 +56,7 @@ Install.packagesTriplot()
 ui <- tagList(
       navbarPage(
         theme = "yeti", 
-        "Triplot",
+        "Triplot classification with polybags",
         tabPanel("",
                  sidebarPanel(
                    radioButtons("points", "Data set to plot:", selected = "Testing",inline = TRUE,
@@ -194,7 +194,10 @@ ui <- tagList(
                             ),
                    tabPanel("Raw",
                             helpText(" ") ,
-                            fileInput("file1", "Choose CSV File for training set",
+                            helpText("Please ensure that both training and testing data sets' variable names and order are exactly the same. If no testing set is available, simply upload the training dataset as a testing data set.
+                                                        The application only allows for up to 5 categories, and should be indicated in the first column of the CSV file starting with 1, 2, 3, 4, and up to 5. All covariates will be treaded as real data. Row numbers should not be included."),
+                            fileInput("file1",
+                                      "Choose CSV File for training set",
                                       multiple = FALSE,
                                       accept = c("text/csv",
                                                  "text/comma-separated-values,text/plain",
