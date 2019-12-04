@@ -39,7 +39,6 @@ Install.packagesTriplot <- function()
     legendtextin <<- c("Disk Hernia", "Spondylolisthesis", "Normal")
     bankrupt<<- read.csv("data/QualitativeBankruptcydata.csv")
     CopperFroth.datain <<- read.csv("data/CopperFroth.csv")
-    Burrito.datain <<- read.csv("data/Burrito.csv")
 }
 
 matequal <<- function(x, y)
@@ -155,42 +154,6 @@ ui <- tagList(
                             radioButtons("corr", "Correlation structure:", selected="Low",
                                          choiceValues = c("Low","HPos","HNeg"),
                                          choiceNames  = c("Low", "High positive", "High negative"))
-                            ),
-                   tabPanel("Burrito",
-                            helpText(""),
-                            sliderInput("percentagesampleU", "Percentage test data:", min = 1, max = 50, value = 25, step=5),
-                            sliderInput("randomseedU", "Random seed used:", min = 1, max = 1000, value = 3, step=1),
-                            radioButtons("UTV","Observed indicator", selected=NA,choiceNames=c("2/5", "3/5", "4/5", "5/5", "Unknown"),
-                                         choiceValues = c(1,2,3,4,NA),inline = TRUE),
-                            radioButtons("UV1","Beef", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV2","Pico", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV3","Guac", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV4","Cheese", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV5","Fries", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV6","Sour cream", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV7","Pork", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV8","Chicken", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV9","Shrimp", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV10","Fish", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV11","Rice", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV12","Beans", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV13","Lettuce", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV14","Tomato", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV15","Bell peper", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV16","Carrots", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV17","Cabbage", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV18","Sauce", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV19","Salsa", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV20","Cilantro", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV21","Onion", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV22","Taquito", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV23","Pineapple", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV24","Ham", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV25","Chile relleno", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV26","Egg", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV27","Mushroom", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV28","Bacon", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE),
-                            radioButtons("UV29","Sushi", selected=0,choiceNames=c("Exclude", "Include"), choiceValues = c(0,1),inline = TRUE)
                             ),
                    tabPanel("Raw",
                             helpText(" ") ,
@@ -362,35 +325,7 @@ server <- function(input,output,session)
     }
     
   }
-  
-  if(choice == "Burrito" & input$points == "SP")
-  {
-    if(matequal(graphdata,Burrito.datain)==FALSE)
-    {
-      graphdata <<- Burrito.datain
-      legendtextin <<- c("2/5", "3/5", "4/5", "5/5")
-      updatePickerInput(session, "evinput", choices = 1:ncol(graphdata), selected = c(1,2))
-    }
-    graphdatatest <<- Burrito.datain[1,]
-    graphdatatest[1,] <<- c(as.numeric(input$UTV), as.numeric(input$UV1), as.numeric(input$UV2), as.numeric(input$UV3), as.numeric(input$UV4), as.numeric(input$UV5), as.numeric(input$UV6), as.numeric(input$UV7), as.numeric(input$UV8), as.numeric(input$UV9), as.numeric(input$UV10), as.numeric(input$UV11), as.numeric(input$UV12), as.numeric(input$UV13), as.numeric(input$UV14), as.numeric(input$UV15), as.numeric(input$UV16), as.numeric(input$UV17), as.numeric(input$UV18), as.numeric(input$UV19), as.numeric(input$UV20), as.numeric(input$UV21), as.numeric(input$UV22), as.numeric(input$UV23), as.numeric(input$UV24), as.numeric(input$UV25), as.numeric(input$UV26), as.numeric(input$UV27), as.numeric(input$UV28), as.numeric(input$UV29))
-  }
-  
-  
-  if(choice == "Burrito" & input$points != "SP")
-  {
-    set.seed(seedrsU)
-    samp <- sample(1:(dim(Burrito.datain)[1]),(dim(Burrito.datain)[1])*(1-percentagesampleU))
-    trainU<<-sort(samp)
-    if(matequal(graphdata,Burrito.datain[trainU,])==FALSE)
-    {
-      graphdata <<- Burrito.datain[trainU,]
-      legendtextin <<-  c("2/5", "3/5", "4/5", "5/5")
-      graphdatatest <<- Burrito.datain[-trainU,]
-      updatePickerInput(session, "evinput", choices = 1:ncol(graphdata), selected = c(1,2))
-    }
-    
-  }
-  
+
   
   ####SIMULATED DATA###############
   seedrssim <<- input$randomseedsimsamp

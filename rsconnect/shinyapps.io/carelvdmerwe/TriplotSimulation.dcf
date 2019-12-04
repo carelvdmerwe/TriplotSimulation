@@ -5,8 +5,8 @@ account: carelvdmerwe
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1064706
-bundleId: 2295010
+bundleId: 2639606
 url: https://carelvdmerwe.shinyapps.io/TriplotSimulation/
-when: 1565099963.81065
+when: 1575451555.37917
 asMultiple: FALSE
 asStatic: FALSE
